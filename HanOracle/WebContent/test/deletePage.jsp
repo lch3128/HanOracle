@@ -7,9 +7,12 @@
 </head>
 <body>
 
-<form action="memberLogin.jsp"  method="post">
+<form action="memberInsert.jsp">
 id <input type="text" name = "id">
-name <input type="text" name = "pwd">
+pwd <input type="text" name = "pwd">
+name <input type="text" name = "name">
+nick <input type="text" name = "nick">
+email <input type="text" name = "email">
 <input type="submit">
 </form>
 </body>

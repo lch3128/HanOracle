@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MemberDAO {
 	
 	ArrayList<MemberDTO> list;
-	
+
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";
 	String userid = "han";
@@ -156,7 +156,7 @@ public class MemberDAO {
 		return countEmail;
 	}	
 	
-	public String LoginSelect(String id, String pass) throws Exception{				// 이메일 중복검사
+	public String LoginSelect(String id) throws Exception{				// 이메일 중복검사
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
