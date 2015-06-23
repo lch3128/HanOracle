@@ -8,6 +8,8 @@
 	String name = request.getParameter("name");
 	String email = request.getParameter("email");
 	
+	System.out.println("name ::: " + name + ", email :::: " + email);
+	
 	MemberDAO dao = new MemberDAO();
 	String id = dao.SearchId(name, email);
 	

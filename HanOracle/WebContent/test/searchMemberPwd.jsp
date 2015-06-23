@@ -1,13 +1,7 @@
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
 <%
+	int pwdCount = 0;
 	request.setCharacterEncoding("UTF-8");
 
 	String id = request.getParameter("id");
@@ -16,6 +10,17 @@
 	
 	MemberDAO dao = new MemberDAO();
 	String s = dao.SearchPwd(id, name, email);
+	
+	if(!s.equals("")){
+		pwdCount = 1;
+	}
+	
+	System.out.println("pwdCount :::::" + pwdCount + ", id:::::::::" + id);
+	
+	StringBuffer buffer = new StringBuffer();
+	buffer.append("<member>");
+	buffer.append("<check>"+pwdCount+"</check>");
+	buffer.append("<id>"+id+"</id>");
+	buffer.append("</member>");
 %>
-</body>
-</html>
+<%= buffer.toString()%>

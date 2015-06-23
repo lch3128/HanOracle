@@ -11,9 +11,10 @@ public class MemberDAO {
 	
 	ArrayList<MemberDTO> list;
 
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";
-	String userid = "han";
+	String driver = "oracle.jdbc.driver.OracleDriver";/*
+	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";*/
+	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	String userid = "kosmo";
 	String passwd = "1234";
 	
 	public MemberDAO() {
@@ -320,10 +321,10 @@ public class MemberDAO {
 		}
 	}
 	
-	public void UpdatePwd(String id, String pass) throws Exception{			// 패스워드 변경
+	public int UpdatePwd(String id, String pass) throws Exception{			// 패스워드 변경
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+		int check = 0;
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
@@ -331,7 +332,7 @@ public class MemberDAO {
 
 			pstmt.setString(1, pass);
 			pstmt.setString(2, id);
-			pstmt.executeUpdate();
+			check = pstmt.executeUpdate();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -349,6 +350,8 @@ public class MemberDAO {
 				}catch(SQLException ex){}
 			}
 		}
+		
+		return check;
 	}
 	
 	public void UpdateName(String id, String name) throws Exception{			// 이름 변경
