@@ -7,9 +7,9 @@ public class FacilityDTO {
 	private double lat;
 	private double lon;
 	
-	public FacilityDTO(int pnumber, int fnumber, double lat, double lon) {
-		this.p_number=pnumber;
-		this.f_number=fnumber;
+	public FacilityDTO(int p_number, int f_number, double lat, double lon) {
+		this.p_number=p_number;
+		this.f_number=f_number;
 		this.lat=lat;
 		this.lon=lon;
 		
