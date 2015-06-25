@@ -1,15 +1,11 @@
 <%@ page import = "member.MemberDAO" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
 
 <%
+	int checkID = 0;
+	int checkNick = 0;
+	int checkEmail = 0;
+	int check = 0;
 	request.setCharacterEncoding("UTF-8");
 
 	String id = request.getParameter("id");
@@ -19,7 +15,23 @@
 	String email = request.getParameter("email");
 	
 	MemberDAO dao = new MemberDAO();
-	dao.InsertMember(id, pwd, name, nick, email);
+	
+	System.out.println("id :: " + id +", pwd :: " + pwd + ", name :: " + name + ", nick :: " + nick + ", email :: " + email);
+	checkID = dao.IdCount(id);
+	checkNick = dao.NickCount(nick);
+	checkEmail = dao.EmailCount(email);
+	
+	if(checkID == 0 && checkNick == 0 && checkEmail == 0){
+		dao.InsertMember(id, pwd, name, nick, email);
+		check = 2;
+	}
+	
+	StringBuffer buffer = new StringBuffer();
+	buffer.append("<member>");
+	buffer.append("<check>"+check+"</check>");
+	buffer.append("<checkID>"+checkID+"</checkID>");
+	buffer.append("<checkNick>"+checkNick+"</checkNick>");
+	buffer.append("<checkEmail>"+checkEmail+"</checkEmail>");
+	buffer.append("</member>");
 %>
-</body>
-</html>
+<%= buffer.toString()%>

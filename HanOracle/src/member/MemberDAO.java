@@ -13,8 +13,8 @@ public class MemberDAO {
 
 	String driver = "oracle.jdbc.driver.OracleDriver";/*
 	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";*/
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "kosmo";
+	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";
+	String userid = "han";
 	String passwd = "1234";
 	
 	public MemberDAO() {
@@ -354,10 +354,11 @@ public class MemberDAO {
 		return check;
 	}
 	
-	public void UpdateName(String id, String name) throws Exception{			// 이름 변경
+	public int UpdateName(String id, String name) throws Exception{			// 이름 변경
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
+		int changedCheck = 0;
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
@@ -365,7 +366,7 @@ public class MemberDAO {
 
 			pstmt.setString(1, name);
 			pstmt.setString(2, id);
-			pstmt.executeUpdate();
+			changedCheck = pstmt.executeUpdate();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -383,12 +384,15 @@ public class MemberDAO {
 				}catch(SQLException ex){}
 			}
 		}
+		
+		return changedCheck;
 	}
 	
-	public void UpdateNick(String id, String nick) throws Exception{				// 닉네임 변경
+	public int UpdateNick(String id, String nick) throws Exception{				// 닉네임 변경
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
+		int changedCheck = 0;
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
@@ -396,7 +400,7 @@ public class MemberDAO {
 
 			pstmt.setString(1, nick);
 			pstmt.setString(2, id);
-			pstmt.executeUpdate();
+			changedCheck = pstmt.executeUpdate();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -414,12 +418,14 @@ public class MemberDAO {
 				}catch(SQLException ex){}
 			}
 		}
+		return changedCheck;
 	}
 	
-	public void UpdateEmail(String id, String email) throws Exception{				// 닉네임 변경
+	public int UpdateEmail(String id, String email) throws Exception{				// 닉네임 변경
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
+		int changedCheck = 0;
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
@@ -427,7 +433,7 @@ public class MemberDAO {
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, id);
-			pstmt.executeUpdate();
+			changedCheck = pstmt.executeUpdate();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -445,19 +451,21 @@ public class MemberDAO {
 				}catch(SQLException ex){}
 			}
 		}
+		
+		return changedCheck;
 	}
 	
-	public void DeleteMember(String id) throws Exception{				// 닉네임 변경
+	public int DeleteMember(String id) throws Exception{				// 닉네임 변경
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+		int changedCheck = 0;
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement("delete from member where id = ?");
 
 			pstmt.setString(1, id);
-			pstmt.executeUpdate();
+			changedCheck = pstmt.executeUpdate();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -475,5 +483,7 @@ public class MemberDAO {
 				}catch(SQLException ex){}
 			}
 		}
+		
+		return changedCheck;
 	}
 }
