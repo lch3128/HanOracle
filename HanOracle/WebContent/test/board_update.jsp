@@ -20,7 +20,7 @@ BoardDAO dao = new BoardDAO();
 
 dao.update(bnumber, subject,content, pnumber);   
 
-response.sendRedirect("select.jsp");
+response.sendRedirect("board_select.jsp");
 
 %>
 </body>
