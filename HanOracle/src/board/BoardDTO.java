@@ -18,7 +18,7 @@ public class BoardDTO {
 	}
 
 	public BoardDTO(int b_number, String b_subject, String b_writer,
-			Date b_regdate, String b_content, int b_count, int p_number) {
+			Date b_regdate, String b_content, int b_count, int p_number, String b_id) {
 
 		this.b_number = b_number;
 		this.b_subject = b_subject;
@@ -27,6 +27,7 @@ public class BoardDTO {
 		this.b_content = b_content;
 		this.b_count = b_count;
 		this.p_number = p_number;
+		this.b_id = b_id;
 
 	}
 
