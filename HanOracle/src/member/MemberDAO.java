@@ -11,10 +11,9 @@ public class MemberDAO {
 	
 	ArrayList<MemberDTO> list;
 
-	String driver = "oracle.jdbc.driver.OracleDriver";/*
-	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";*/
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "kosmo";
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@192.168.0.21:1521:XE";
+	String userid = "han";
 	String passwd = "1234";
 	
 	public MemberDAO() {
@@ -294,7 +293,7 @@ public class MemberDAO {
 		try{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
-			pstmt = con.prepareStatement("insert into member (id, pwd, name, nick, email) values (?,?,?,?,?)");
+			pstmt = con.prepareStatement("insert into member (id, pwd, name, nick, email, tel) values (?,?,?,?,?,'000-0000-0000')");
 
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
