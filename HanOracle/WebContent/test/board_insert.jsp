@@ -21,7 +21,7 @@ BoardDAO dao = new BoardDAO();
 
 dao.insert(subject, writer, content, pnumber, id);  
 
-response.sendRedirect("select.jsp");
+response.sendRedirect("board_select.jsp");
 
 %>
 </body>

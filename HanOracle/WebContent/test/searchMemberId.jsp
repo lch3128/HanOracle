@@ -1,9 +1,8 @@
 <%@page import="member.MemberDAO"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 	int idCount = 0;
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("utf-8");
 
 	String name = request.getParameter("name");
 	String email = request.getParameter("email");

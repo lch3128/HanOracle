@@ -21,6 +21,7 @@
     	String b_content = dto.getB_content();
     	int b_count = dto.getB_count();
     	int p_number = dto.getP_number();
+    	String b_id = dto.getB_id();
 		
 		buffer.append("<record>");
 		buffer.append("<b_number>"+b_number+"</b_number>");
@@ -30,6 +31,7 @@
 		buffer.append("<b_content>"+b_content+"</b_content>");
 		buffer.append("<b_count>"+b_count+"</b_count>");
 		buffer.append("<p_number>"+p_number+"</p_number>");
+		buffer.append("<b_id>"+b_id+"</b_id>");
 		buffer.append("</record>");
 	}
 	buffer.append("</board>");

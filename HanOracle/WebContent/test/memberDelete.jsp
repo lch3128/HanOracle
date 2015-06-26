@@ -1,17 +1,27 @@
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
 <%
+	int changedCheck = 0;
+	int check = 0;								// check = 7  회원탈퇴
+	
+	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
 
+	System.out.println("memberDelete....... id = "+id);
+	
 	MemberDAO dao = new MemberDAO();
-	dao.DeleteMember(id);
+	changedCheck = dao.DeleteMember(id);
+	
+	if(changedCheck == 1){
+		check = 7;
+	}
+	
+	System.out.println("changedCheck" + changedCheck);
+	
+	StringBuffer buffer = new StringBuffer();
+	buffer.append("<member>");
+	buffer.append("<check>"+check+"</check>");
+	buffer.append("</member>");
 %>
-</body>
-</html>
+
+<%= buffer.toString()%>

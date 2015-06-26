@@ -1,21 +1,35 @@
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
 
 <%
+	int changedCheck = 0;
+	int check = 0;									// check = 2 면, 변경된거. check = 3이면, nick존재.
+	int checkNick = 0;
+	
 	request.setCharacterEncoding("UTF-8");
 
 	String id = request.getParameter("id");
 	String nick = request.getParameter("nick");
 	
+	System.out.println("memberUpdateNick..... id = "+id+", nick="+nick);
+	
 	MemberDAO dao = new MemberDAO();
-	dao.UpdateNick(id, nick);
+	
+	checkNick = dao.NickCount(nick);
+	
+	if(checkNick == 0){
+		changedCheck = dao.UpdateNick(id, nick);
+		check = 2;
+	}else{
+		check = 3;
+	}
+	
+	System.out.println("changedCheck :: " + changedCheck + ", check ::: " + check);
+	
+	StringBuffer buffer = new StringBuffer();
+	buffer.append("<member>");
+	buffer.append("<check>"+check+"</check>");
+	buffer.append("</member>");
 %>
-</body>
-</html>
+
+<%= buffer.toString()%>

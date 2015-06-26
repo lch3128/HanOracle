@@ -11,13 +11,13 @@
 <body>
 <%
  
-String bNum2 = request.getParameter("bNum");
-String parkNum2 = request.getParameter("parkNum");
-BoardDAO dao = new BoardDAO();
-dao.delete_comment(bNum2);
-dao.delete(bNum2); 
+String cnum2 = request.getParameter("cnum");
+String bnum2 = request.getParameter("bnum");
 
-response.sendRedirect("board_select_park.jsp?parkNum="+parkNum2);
+BoardDAO dao = new BoardDAO();
+dao.delete_comment_one(cnum2);
+
+response.sendRedirect("board_comment_select.jsp?bnum="+bnum2);
 
 %>
 </body>
